@@ -1,6 +1,6 @@
-# Snap App
+# Convert App
 
-Snap Card game for AP Computer Science AB 2022-2023 in Ivan Rico's class
+Binary and Hexadecimal Converter for AP Computer Science AB 2022-2023 in Ivan Rico's class
 
 ## Dependencies for running
 
@@ -8,7 +8,7 @@ Snap Card game for AP Computer Science AB 2022-2023 in Ivan Rico's class
 
 ## Running
 
-- First download the **[Latest release](https://github.com/luis-c465/Snap/releases/latest)**
+- First download the **[Latest release](https://github.com/luis-c465/Convert/releases/latest)**
 - Then run in the command line _(Or just double click on the file)_
   ```bash
   java -jar Main.jar
@@ -18,30 +18,30 @@ Snap Card game for AP Computer Science AB 2022-2023 in Ivan Rico's class
 
 ### Dependencies
 
-- **[Processing v3.5.1](https://processing.org/download)**
-- **[Ant v1.10.12](https://ant.apache.org/bindownload.cgi#:~:text=1.10.12%20release%20%2D%20requires%20minimum%20of%20Java%208%20at%20runtime)**
+- **[Maven v3.8.4](https://maven.apache.org/download.cgi)**
 
 ### How to build
 
-- In the Processing app go to in the top bar: `Tools` -> `Install processing-java`
-  - NOTE: **The Processing-java command only has to be installed once**
-- Then in the command line run
-  ```bash
-    ant
-  ```
-- Then the **Executable Jar** `Main.jar` will be in the`build/` folder 🎉
+Run the following in the [command line](https://www.freecodecamp.org/news/how-to-use-the-cli-beginner-guide/#how-to-locate-your-cli)
+
+```bash
+mvn clean compile assembly:single
+```
+
+- Then the **Executable Jar** `convert.jar` will be in the root folder 🎉
 
 ## Project Requirements
 
-Due: **Sun, Jan 8 2023**
+Due: **Sat, Jan 15 2022** @midnight
 
-- 2 Players per game
-- 7 cards in a deck, start with 5 (12 total card, 4 per location)
-- Cards have values of at least 1-9
-- 3 Locations
-- 4 cards can be placed at each location
-- Highest sum of cards wins location
-- 1 card played on the first turn, 2 cards on the second turn, etc..
-- 1 card randomly drawn each turn
-- Ends after at least 3 rounds (suggested 5 rounds)
-- Can exit whenever
+- Explains how Binary is converted into an integer (see this link)
+- Note: Each binary digit is a power of 2.
+- Shows what each Binary digit represents as an integer
+- Converts a Binary number to an integer
+- Converts an integer into a binary number
+- Explains how Hexadecimal is converted into an decimal (see this link)
+- Note: Each hexadecimal digit is a power of 16 multiplied by the digit’s value
+- Shows what each Hexadecimal digit represents as an decimal
+- Converts a Hexadecimal digit to a decimal digit
+- Converts a decimal digit to a hexadecimal
+- Note: See this example for help with code
