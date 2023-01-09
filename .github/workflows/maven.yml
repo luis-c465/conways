@@ -44,3 +44,8 @@ jobs:
           title: "Development Build"
           files: |
             convert*.jar
+
+permissions:
+  contents: read
+  pull-requests: read
+  deployments: write
