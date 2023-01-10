@@ -64,6 +64,7 @@ public abstract class Transition extends Obj {
     }
   }
 
+  @Override
   public void _update() {
     p.fill(0, opacity);
     p.rect(0, 0, m.w, m.h);

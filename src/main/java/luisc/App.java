@@ -8,6 +8,13 @@ import processing.core.PApplet;
  */
 public final class App extends PApplet {
 
+  // * Game classes
+  public Header header = new Header(this);
+
+  // * Transition classes
+  public TransitionIn transIn = new TransitionIn(this);
+  public TransitionOut transOut = new TransitionOut(this);
+
   @Override
   public void settings() {
     size(1000, 1000);
@@ -21,19 +28,23 @@ public final class App extends PApplet {
     // * Setup variables and assets
     a.setup(this);
     cp5 = new ControlP5(this);
+
     // * SETUP CLASSES
+    header.setup();
   }
 
   @Override
   public void draw() {
-    fill(0);
+    fill(255);
     ellipse(mouseX, mouseY, 255, 255);
+
+    header.update();
   }
 
   /**
    * Sets the default settings for drawing with processing
    */
-  void procSet() {
+  public void procSet() {
     background(0);
     shapeMode(CENTER);
     textAlign(CENTER);
@@ -67,9 +78,5 @@ public final class App extends PApplet {
   // * Library classes
   public ControlP5 cp5;
 
-  // * Transition classes
-  public TransitionIn transIn = new TransitionIn(this);
-  public TransitionOut transOut = new TransitionOut(this);
-
-  public static final String[] appletArgs = { "luisc.App", "--display=1" };
+  public static final String[] appletArgs = { "--display=3", "luisc.App" };
 }

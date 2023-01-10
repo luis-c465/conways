@@ -7,14 +7,14 @@ public abstract class Btn extends Clickable {
   protected final int btn_safe = 10;
 
   protected String txt = "Click me!";
-  protected int txt_size = 30;
+  protected int txt_size = 20;
   protected int c = 0xfffac83c;
-  protected int txt_c = 0xff0;
+  protected int txt_c = 0xffffffff;
   protected int radius = 25;
 
   protected boolean hasIcon = true;
   protected PShape icon;
-  protected int icon_space = 45;
+  protected int icon_space = 70;
   protected int icon_size = 50;
 
   // ! Calculated in setup
@@ -35,13 +35,11 @@ public abstract class Btn extends Clickable {
   }
 
   /**
-   * Should be overriden by inheriting classes if needed
+   * Should be overridden by inheriting classes if needed
    * Icon should be setup here
    */
-  protected void _setup() {}
+  protected abstract void _setup();
 
-  /* (non-Javadoc)
-   */
   protected void _update() {
     p.rectMode(p.CENTER);
     p.shapeMode(p.CENTER);
