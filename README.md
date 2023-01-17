@@ -1,4 +1,4 @@
-# conway's Game Of Life App
+# Conway's Game Of Life App
 
 Binary and Hexadecimal Converter for AP Computer Science AB 2022-2023 in Ivan Rico's class
 
@@ -8,7 +8,7 @@ Binary and Hexadecimal Converter for AP Computer Science AB 2022-2023 in Ivan Ri
 
 ## Running
 
-- First download the **[Latest release](https://github.com/luis-c465/Convert/releases/latest)**
+- First download the **[Latest release](https://github.com/luis-c465/conways/releases/latest)**
 - Then run in the command line _(Or just double click on the file)_
   ```bash
   java -jar Main.jar
@@ -28,7 +28,7 @@ Run the following in the [command line](https://www.freecodecamp.org/news/how-to
 mvn clean compile assembly:single
 ```
 
-- Then the **Executable Jar** `convert.jar` will be in the root folder 🎉
+- Then the **Executable Jar** `conways.jar` will be in the root folder 🎉
 
 ## Project Requirements
 
