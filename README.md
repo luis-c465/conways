@@ -1,4 +1,4 @@
-# Convert App
+# conway's Game Of Life App
 
 Binary and Hexadecimal Converter for AP Computer Science AB 2022-2023 in Ivan Rico's class
 
@@ -32,16 +32,16 @@ mvn clean compile assembly:single
 
 ## Project Requirements
 
-Due: **Sat, Jan 15 2022** @midnight
+Due: **Sun, Jan 22 2023** @midnight
 
-- Explains how Binary is converted into an integer (see this link)
-- Note: Each binary digit is a power of 2.
-- Shows what each Binary digit represents as an integer
-- Converts a Binary number to an integer
-- Converts an integer into a binary number
-- Explains how Hexadecimal is converted into an decimal (see this link)
-- Note: Each hexadecimal digit is a power of 16 multiplied by the digit’s value
-- Shows what each Hexadecimal digit represents as an decimal
-- Converts a Hexadecimal digit to a decimal digit
-- Converts a decimal digit to a hexadecimal
-- Note: See this example for help with code
+- http://pi.math.cornell.edu/~lipa/mec/lesson6.html
+- If the cell is alive, then it stays alive if it has either 2 or 3 live neighbors
+- If the cell is dead, then it springs to life only in the case that it has 3 live neighbors
+-
+- Cell’s stay alive according to Conway’s rules
+- Cell’s die according to Conway’s rules
+- Cell’s come to life according to Conway’s rules
+- Can set the size of the board (number of possible cells)
+- Counts the number of cycles (i.e. how long the program has been running)
+- Counts the number of cells that have died
+- Exit anytime
