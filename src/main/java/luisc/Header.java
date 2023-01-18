@@ -1,5 +1,7 @@
 package luisc;
 
+import controlP5.ControlP5;
+import controlP5.Slider;
 import processing.core.PShape;
 
 /**
@@ -13,6 +15,8 @@ public class Header extends Obj {
   public PausedButton pausedBtn;
   public HelpBtn helpBtn;
 
+  public Slider intervalSlider;
+
   @Override
   protected void _setup() {
     pausedBtn = new PausedButton(m);
@@ -20,12 +24,47 @@ public class Header extends Obj {
 
     pausedBtn.setup();
     helpBtn.setup();
+
+    intervalSlider =
+      m.cp5
+        .addSlider("ticks per second")
+        .setPosition(safe, safe)
+        .setSize(400, 40)
+        .setRange(1, 60)
+        .setValue(5)
+        .setNumberOfTickMarks(60)
+        .snapToTickMarks(true)
+        .showTickMarks(false)
+        .setDecimalPrecision(0)
+        .hide();
+
+    // reposition the Label for controller 'slider'
+    intervalSlider
+      .getValueLabel()
+      .align(ControlP5.LEFT, ControlP5.BOTTOM_OUTSIDE)
+      .setPaddingX(0)
+      .setSize(30)
+      .setFont(a.nunito_small);
+    intervalSlider
+      .getCaptionLabel()
+      .align(ControlP5.RIGHT, ControlP5.BOTTOM_OUTSIDE)
+      .setPaddingX(0)
+      .setSize(30)
+      .setFont(a.nunito_small);
   }
 
   @Override
   protected void _update() {
     pausedBtn.update();
     helpBtn.update();
+
+    if (!m.startUp.done) {
+      intervalSlider.hide();
+    } else {
+      intervalSlider.show();
+    }
+
+    m.conways.interval = 1_000 / Math.round(intervalSlider.getValue());
   }
 
   // First button the header

@@ -63,6 +63,7 @@ public final class App extends PApplet {
 
   @Override
   public void draw() {
+    background(bg);
     fill(255);
 
     startUp.update();
@@ -73,6 +74,10 @@ public final class App extends PApplet {
 
     header.update();
     conways.update();
+  }
+
+  public void slider(float interval) {
+    conways.interval = Math.round(interval);
   }
 
   public static final String[] appletArgs = { "--display=1", "luisc.App" };
