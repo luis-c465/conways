@@ -8,10 +8,33 @@ import processing.core.PApplet;
  */
 public final class App extends PApplet {
 
-  // * Game classes
-  public Header header = new Header(this);
+  // * CONSTANTS
+  public static final int h = 1000;
+  public static final int w = 1000;
 
-  // * Transition classes
+  public static final int ch = 500;
+  public static final int cw = 500;
+
+  // * COLORS
+  public static final int bg = 0xff1e293b;
+
+  // * VARIABLES
+  public boolean doingStartUp = true;
+  public boolean transitioning = false;
+  public int numCols = -1;
+  public int numRows = -1;
+
+  // * Util classes
+  public Assets a = new Assets();
+
+  // * Library classes
+  public ControlP5 cp5;
+
+  // Game classes
+  public Header header = new Header(this);
+  public StartUp startUp = new StartUp(this);
+
+  // Transition classes
   public TransitionIn transIn = new TransitionIn(this);
   public TransitionOut transOut = new TransitionOut(this);
 
@@ -22,23 +45,34 @@ public final class App extends PApplet {
 
   @Override
   public void setup() {
-    //   surface.setLocation(-1200, 500);
     procSet();
 
-    // * Setup variables and assets
+    // Setup variables and assets
     a.setup(this);
     cp5 = new ControlP5(this);
 
-    // * SETUP CLASSES
+    // SETUP CLASSES
     header.setup();
+    startUp.setup();
   }
 
   @Override
   public void draw() {
     fill(255);
-    ellipse(mouseX, mouseY, 255, 255);
+
+    startUp.update();
+    // If the startup is not done do not continue on to the rest of the program
+    if (!startUp.done) {
+      return;
+    }
 
     header.update();
+  }
+
+  public static final String[] appletArgs = { "--display=1", "luisc.App" };
+
+  public static void main(String[] args) {
+    runSketch(appletArgs, null);
   }
 
   /**
@@ -54,29 +88,4 @@ public final class App extends PApplet {
     // Default fill color is white
     fill(255);
   }
-
-  public static void main(String[] args) {
-    runSketch(appletArgs, null);
-  }
-
-  // * CONSTANTS
-  public static final int h = 1000;
-  public static final int w = 1000;
-
-  public static final int ch = 500;
-  public static final int cw = 500;
-
-  // * COLORS
-  public static final int bg = 0xff1e293b;
-
-  // * VARIABLES
-  public boolean transitioning = false;
-
-  // * Util classes
-  public Assets a = new Assets();
-
-  // * Library classes
-  public ControlP5 cp5;
-
-  public static final String[] appletArgs = { "--display=3", "luisc.App" };
 }

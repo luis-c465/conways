@@ -5,10 +5,9 @@ import processing.core.PFont;
 import processing.core.PImage;
 
 /**
- * Class whitch assetses images and audio to be played back
- * in the game
+ * Class which loads images and audio to be used in the main class {@link App}
  *
- * Call the _setup method to load all the images and the sounds
+ * Call the {@link #setup(App) setup method} to load all the images and the sounds
  */
 public class Assets {
 
@@ -47,6 +46,8 @@ public class Assets {
 
   /**
    * Safely and dynamically get an asset with the given name
+   *
+   * @return null if an error occurred getting the asset
    */
   public PImage getAsset(String name) {
     try {
