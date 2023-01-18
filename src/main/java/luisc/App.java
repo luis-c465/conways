@@ -93,4 +93,9 @@ public final class App extends PApplet {
     // Default fill color is white
     fill(255);
   }
+
+  @Override
+  public void keyPressed() {
+    conways.KeyPressed();
+  }
 }

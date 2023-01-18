@@ -143,7 +143,7 @@ public class Conways extends Obj {
     } // End of x loop
   } // End of function
 
-  public void checkKeyPressed() {
+  public void KeyPressed() {
     if (p.key == 'r' || p.key == 'R') {
       // Restart: re-initialization of cells
       for (int x = 0; x < App.w / cellSize; x++) {
