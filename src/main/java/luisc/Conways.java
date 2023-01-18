@@ -68,7 +68,7 @@ public class Conways extends Obj {
           p.fill(dead); // If dead
         }
         // TODO: Add a padding to the top
-        p.rect(x * cellSize, y * cellSize + 0, cellSize, cellSize);
+        p.rect(x * cellSize, y * cellSize + padding, cellSize, cellSize);
       }
     }
     // Iterate if timer ticks
@@ -84,7 +84,7 @@ public class Conways extends Obj {
       // Map and avoid out of bound errors
       int xCellOver = (int) (p.map(p.mouseX, 0, App.w, 0, App.w / cellSize));
       xCellOver = p.constrain(xCellOver, 0, App.w / cellSize - 1);
-      int yCellOver = (int) (p.map(p.mouseY, 0, App.h, 0, App.h / cellSize));
+      int yCellOver = (int) (p.map(p.mouseY, padding, App.h, 0, App.h / cellSize));
       yCellOver = p.constrain(yCellOver, 0, App.h / cellSize - 1);
 
       // Check against cells in buffer
