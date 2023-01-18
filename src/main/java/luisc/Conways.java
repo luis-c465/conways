@@ -3,8 +3,8 @@ package luisc;
 /**
  * Game of Life originally created by Joan Soler-Adillon.
  *
- * Press SPACE BAR to pause and change the cell's values
- * with the mouse. On pause, click to activate/deactivate
+ * Press SPACE BAR to m.paused and change the cell's values
+ * with the mouse. On m.paused, click to activate/deactivate
  * cells. Press 'R' to randomly reset the cells' grid.
  * Press 'C' to clear the cells' grid. The original Game
  * of Life was created by John Conway in 1970.
@@ -35,28 +35,6 @@ public class Conways extends Obj {
 
   public boolean ready = false;
 
-  // Pause
-  boolean pause = false;
-
-  @Override
-  protected void _setup() {
-    // cells = new int[m.numCols][m.numRows];
-    // cellsBuffer = new int[m.numCols][m.numRows];
-
-    // for (int x = 0; x < m.numCols; x++) {
-    //   for (int y = 0; y < m.numRows; y++) {
-    //     float state = p.random(100);
-    //     if (state > probabilityOfAliveAtStart) {
-    //       state = 0;
-    //     } else {
-    //       state = 1;
-    //     }
-
-    //     cells[x][y] = (int) state; // Save state of each cell
-    //   }
-    // }
-  }
-
   @Override
   protected void _update() {
     if (!ready) {
@@ -76,14 +54,14 @@ public class Conways extends Obj {
     }
     // Iterate if timer ticks
     if (p.millis() - lastRecordedTime > interval) {
-      if (!pause) {
+      if (!m.paused) {
         iteration();
         lastRecordedTime = p.millis();
       }
     }
 
-    // Create  new cells manually on pause
-    if (pause && p.mousePressed) {
+    // Create  new cells manually on m.paused
+    if (m.paused && p.mousePressed) {
       // Map and avoid out of bound errors
       int xCellOver = (int) (p.map(p.mouseX, 0, App.w, 0, App.w / cellSize));
       xCellOver = p.constrain(xCellOver, 0, m.numCols - 1);
@@ -98,7 +76,7 @@ public class Conways extends Obj {
         cells[xCellOver][yCellOver] = 1; // Make alive
         p.fill(alive); // Fill alive color
       }
-    } else if (pause && !p.mousePressed) { // And then save to buffer once mouse goes up
+    } else if (m.paused && !p.mousePressed) { // And then save to buffer once mouse goes up
       // Save cells to buffer (so we operate with one array keeping the other intact)
       for (int x = 0; x < m.numCols; x++) {
         for (int y = 0; y < m.numRows; y++) {
@@ -161,8 +139,8 @@ public class Conways extends Obj {
         }
       }
     }
-    if (p.key == ' ') { // On/off of pause
-      pause = !pause;
+    if (p.key == ' ') { // On/off of m.paused
+      m.paused = !m.paused;
     }
     if (p.key == 'c' || p.key == 'C') { // Clear all
       for (int x = 0; x < m.numCols; x++) {

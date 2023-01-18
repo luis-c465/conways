@@ -23,6 +23,7 @@ public final class App extends PApplet {
   public boolean transitioning = false;
   public int numCols = -1;
   public int numRows = -1;
+  public boolean paused = false;
 
   // Should be calculated at runtime
 

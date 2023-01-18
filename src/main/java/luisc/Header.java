@@ -1,5 +1,7 @@
 package luisc;
 
+import processing.core.PShape;
+
 /**
  * Contains buttons for switching between different
  */
@@ -8,87 +10,93 @@ public class Header extends Obj {
   public static final int safe = 10;
   public static final int gap = 350;
 
-  public BinaryBtn binaryBtn;
-  public HexadecimalBtn hexBtn;
-  public TestModeBtn testModeBtn;
+  public PausedButton pausedBtn;
+  public HelpBtn helpBtn;
 
   @Override
   protected void _setup() {
-    binaryBtn = new BinaryBtn(m);
-    hexBtn = new HexadecimalBtn(m);
-    testModeBtn = new TestModeBtn(m);
+    pausedBtn = new PausedButton(m);
+    helpBtn = new HelpBtn(m);
 
-    binaryBtn.setup();
-    hexBtn.setup();
-    testModeBtn.setup();
+    pausedBtn.setup();
+    helpBtn.setup();
   }
 
   @Override
   protected void _update() {
-    binaryBtn.update();
-    hexBtn.update();
-    testModeBtn.update();
+    pausedBtn.update();
+    helpBtn.update();
   }
 
   // First button the header
-  private class BinaryBtn extends Btn {
+  private class PausedButton extends Btn {
+
+    private PShape pause;
+    private PShape play;
+
+    private String pau = "Pause";
+    private String pla = "Play";
 
     @Override
     protected void _setup() {
-      icon = p.loadShape("binary.svg");
-      x = safe;
+      pause = p.loadShape("clock-pause.svg");
+      play = p.loadShape("clock-play.svg");
+
+      icon = pause;
+      x = App.w - 70 - w - 75;
       y = safe + h;
 
       w = 200;
 
-      txt = "Binary";
+      txt = pau;
 
       cornerToCenter();
     }
 
-    public BinaryBtn(App a) {
+    @Override
+    protected void postUpdate() {
+      super.postUpdate();
+
+      if (m.paused) {
+        icon = play;
+        txt = pla;
+      } else {
+        icon = pause;
+        txt = pau;
+      }
+    }
+
+    @Override
+    protected void _update() {
+      super._update();
+
+      if (clicked) {
+        m.paused = !m.paused;
+      }
+    }
+
+    public PausedButton(App a) {
       super(a);
     }
   }
 
-  // Second button the header
-  private class HexadecimalBtn extends Btn {
+  private class HelpBtn extends Btn {
 
     @Override
     protected void _setup() {
-      icon = p.loadShape("hexagon.svg");
-      x = safe + gap;
+      icon = p.loadShape("help.svg");
+      w = 75;
       y = safe + h;
 
-      w = 200;
+      x = App.w - safe - w;
 
-      txt = "Hexadecimal";
+      txt = "";
+      icon_space = 0;
 
       cornerToCenter();
     }
 
-    public HexadecimalBtn(App a) {
-      super(a);
-    }
-  }
-
-  // Second button the header
-  private class TestModeBtn extends Btn {
-
-    @Override
-    protected void _setup() {
-      icon = p.loadShape("notebook.svg");
-      x = safe + gap * 2;
-      y = safe + h;
-
-      w = 200;
-
-      txt = "Test Mode";
-
-      cornerToCenter();
-    }
-
-    public TestModeBtn(App a) {
+    public HelpBtn(App a) {
       super(a);
     }
   }
