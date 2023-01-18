@@ -18,7 +18,7 @@ public abstract class Obj {
     this.p = app;
   }
 
-  public void setup() {
+  public final void setup() {
     // Do sone setup
     preSetup();
 

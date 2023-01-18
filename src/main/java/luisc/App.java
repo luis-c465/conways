@@ -24,6 +24,8 @@ public final class App extends PApplet {
   public int numCols = -1;
   public int numRows = -1;
 
+  // Should be calculated at runtime
+
   // * Util classes
   public Assets a = new Assets();
 
@@ -33,6 +35,7 @@ public final class App extends PApplet {
   // Game classes
   public Header header = new Header(this);
   public StartUp startUp = new StartUp(this);
+  public Conways conways = new Conways(this);
 
   // Transition classes
   public TransitionIn transIn = new TransitionIn(this);
@@ -54,6 +57,7 @@ public final class App extends PApplet {
     // SETUP CLASSES
     header.setup();
     startUp.setup();
+    conways.setup();
   }
 
   @Override
@@ -67,6 +71,7 @@ public final class App extends PApplet {
     }
 
     header.update();
+    conways.update();
   }
 
   public static final String[] appletArgs = { "--display=1", "luisc.App" };
