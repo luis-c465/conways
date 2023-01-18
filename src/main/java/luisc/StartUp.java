@@ -105,6 +105,11 @@ public class StartUp extends Transitionable {
         return;
       }
 
+      if (m.numRows > 1000 || m.numCols > 1000) {
+        errors = "The number or rows or cols cannot be > 1000!";
+        return;
+      }
+
       errors = "";
 
       numRows.remove();
