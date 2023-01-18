@@ -112,6 +112,8 @@ public class StartUp extends Transitionable {
 
       // Begin transitioning!
       trans = true;
+
+      m.conways.calc();
     }
   }
 

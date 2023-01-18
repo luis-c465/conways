@@ -33,41 +33,44 @@ public class Conways extends Obj {
   // while changing the others in the interactions
   public int[][] cellsBuffer;
 
+  public boolean ready = false;
+
   // Pause
   boolean pause = false;
 
   @Override
   protected void _setup() {
-    cells = new int[App.w / cellSize][App.h / cellSize];
-    cellsBuffer = new int[App.w / cellSize][App.h / cellSize];
+    // cells = new int[m.numCols][m.numRows];
+    // cellsBuffer = new int[m.numCols][m.numRows];
 
-    for (int x = 0; x < App.w / cellSize; x++) {
-      for (int y = 0; y < App.h / cellSize; y++) {
-        float state = p.random(100);
-        if (state > probabilityOfAliveAtStart) {
-          state = 0;
-        } else {
-          state = 1;
-        }
+    // for (int x = 0; x < m.numCols; x++) {
+    //   for (int y = 0; y < m.numRows; y++) {
+    //     float state = p.random(100);
+    //     if (state > probabilityOfAliveAtStart) {
+    //       state = 0;
+    //     } else {
+    //       state = 1;
+    //     }
 
-        cells[x][y] = (int) state; // Save state of each cell
-      }
-    }
+    //     cells[x][y] = (int) state; // Save state of each cell
+    //   }
+    // }
   }
 
   @Override
   protected void _update() {
-    // TODO Auto-generated method stub
+    if (!ready) {
+      return;
+    }
 
     //Draw grid
-    for (int x = 0; x < App.w / cellSize; x++) {
-      for (int y = 0; y < App.h / cellSize; y++) {
+    for (int x = 0; x < m.numCols; x++) {
+      for (int y = 0; y < m.numRows; y++) {
         if (cells[x][y] == 1) {
           p.fill(alive); // If alive
         } else {
           p.fill(dead); // If dead
         }
-        // TODO: Add a padding to the top
         p.rect(x * cellSize, y * cellSize + padding, cellSize, cellSize);
       }
     }
@@ -83,9 +86,9 @@ public class Conways extends Obj {
     if (pause && p.mousePressed) {
       // Map and avoid out of bound errors
       int xCellOver = (int) (p.map(p.mouseX, 0, App.w, 0, App.w / cellSize));
-      xCellOver = p.constrain(xCellOver, 0, App.w / cellSize - 1);
-      int yCellOver = (int) (p.map(p.mouseY, padding, App.h, 0, App.h / cellSize));
-      yCellOver = p.constrain(yCellOver, 0, App.h / cellSize - 1);
+      xCellOver = p.constrain(xCellOver, 0, m.numCols - 1);
+      int yCellOver = (int) (p.map(p.mouseY - padding, 0, App.h, 0, App.h / cellSize));
+      yCellOver = p.constrain(yCellOver, 0, m.numRows - 1);
 
       // Check against cells in buffer
       if (cellsBuffer[xCellOver][yCellOver] == 1) { // Cell is alive
@@ -97,8 +100,8 @@ public class Conways extends Obj {
       }
     } else if (pause && !p.mousePressed) { // And then save to buffer once mouse goes up
       // Save cells to buffer (so we operate with one array keeping the other intact)
-      for (int x = 0; x < App.w / cellSize; x++) {
-        for (int y = 0; y < App.h / cellSize; y++) {
+      for (int x = 0; x < m.numCols; x++) {
+        for (int y = 0; y < m.numRows; y++) {
           cellsBuffer[x][y] = cells[x][y];
         }
       }
@@ -107,20 +110,20 @@ public class Conways extends Obj {
 
   private void iteration() { // When the clock ticks
     // Save cells to buffer (so we operate with one array keeping the other intact)
-    for (int x = 0; x < App.w / cellSize; x++) {
-      for (int y = 0; y < App.h / cellSize; y++) {
+    for (int x = 0; x < m.numCols; x++) {
+      for (int y = 0; y < m.numRows; y++) {
         cellsBuffer[x][y] = cells[x][y];
       }
     }
 
     // Visit each cell:
-    for (int x = 0; x < App.w / cellSize; x++) {
-      for (int y = 0; y < App.h / cellSize; y++) {
+    for (int x = 0; x < m.numCols; x++) {
+      for (int y = 0; y < m.numRows; y++) {
         // And visit all the neighbors of each cell
         int neighbors = 0; // We'll count the neighbors
         for (int xx = x - 1; xx <= x + 1; xx++) {
           for (int yy = y - 1; yy <= y + 1; yy++) {
-            if (((xx >= 0) && (xx < App.w / cellSize)) && ((yy >= 0) && (yy < App.h / cellSize))) { // Make sure you are not out of bounds
+            if (((xx >= 0) && (xx < m.numCols)) && ((yy >= 0) && (yy < m.numRows))) { // Make sure you are not out of bounds
               if (!((xx == x) && (yy == y))) { // Make sure to to check against self
                 if (cellsBuffer[xx][yy] == 1) {
                   neighbors++; // Check alive neighbors and count them
@@ -146,8 +149,8 @@ public class Conways extends Obj {
   public void KeyPressed() {
     if (p.key == 'r' || p.key == 'R') {
       // Restart: re-initialization of cells
-      for (int x = 0; x < App.w / cellSize; x++) {
-        for (int y = 0; y < App.h / cellSize; y++) {
+      for (int x = 0; x < m.numCols; x++) {
+        for (int y = 0; y < m.numRows; y++) {
           float state = p.random(100);
           if (state > probabilityOfAliveAtStart) {
             state = 0;
@@ -162,8 +165,8 @@ public class Conways extends Obj {
       pause = !pause;
     }
     if (p.key == 'c' || p.key == 'C') { // Clear all
-      for (int x = 0; x < App.w / cellSize; x++) {
-        for (int y = 0; y < App.h / cellSize; y++) {
+      for (int x = 0; x < m.numCols; x++) {
+        for (int y = 0; y < m.numRows; y++) {
           cells[x][y] = 0; // Save all to zero
         }
       }
@@ -180,5 +183,26 @@ public class Conways extends Obj {
   /**
    * Calculates the cell size for the class
    */
-  public void calc() {}
+  public void calc() {
+    int max_d = p.max(m.numCols, m.numRows);
+    cellSize = Math.round(App.w / max_d);
+
+    cells = new int[m.numCols][m.numRows];
+    cellsBuffer = new int[m.numCols][m.numRows];
+
+    for (int x = 0; x < m.numCols; x++) {
+      for (int y = 0; y < m.numRows; y++) {
+        float state = p.random(100);
+        if (state > probabilityOfAliveAtStart) {
+          state = 0;
+        } else {
+          state = 1;
+        }
+
+        cells[x][y] = (int) state; // Save state of each cell
+      }
+    }
+
+    ready = true;
+  }
 }
