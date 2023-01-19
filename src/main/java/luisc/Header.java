@@ -17,6 +17,18 @@ public class Header extends Obj {
 
   public Slider intervalSlider;
 
+  public static final int icon_size = 30;
+
+  public static final int dead_x = 450;
+  public static final int dead_x_txt = 470;
+  public static final int dead_y = 25;
+  public static final int dead_y_txt = 30;
+
+  public static final int ticks_x = 450;
+  public static final int ticks_x_txt = 470;
+  public static final int ticks_y = 60;
+  public static final int ticks_y_txt = 65;
+
   @Override
   protected void _setup() {
     pausedBtn = new PausedButton(m);
@@ -64,7 +76,35 @@ public class Header extends Obj {
       intervalSlider.show();
     }
 
+    showDead();
+    showTicks();
+
     m.conways.interval = 1_000 / Math.round(intervalSlider.getValue());
+  }
+
+  /**
+   * Shows a running count of the number of dead cells
+   */
+  private void showDead() {
+    preShow();
+    p.shape(a.skull, dead_x, dead_y);
+    p.text(String.valueOf(m.numDead), dead_x_txt, dead_y_txt);
+  }
+
+  /**
+   * Shows a running count of the number of game ticks done
+   */
+  private void showTicks() {
+    preShow();
+    p.shape(a.tick, ticks_x, ticks_y);
+    p.text(String.valueOf(m.numTicks), ticks_x_txt, ticks_y_txt);
+  }
+
+  private void preShow() {
+    p.textSize(20);
+    p.shapeMode(p.CENTER);
+    p.textAlign(p.CORNER);
+    p.fill(255);
   }
 
   // First button the header

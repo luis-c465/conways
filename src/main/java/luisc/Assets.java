@@ -3,6 +3,7 @@ package luisc;
 import processing.core.PApplet;
 import processing.core.PFont;
 import processing.core.PImage;
+import processing.core.PShape;
 
 /**
  * Class which loads images and audio to be used in the main class {@link App}
@@ -13,6 +14,10 @@ public class Assets {
 
   public PApplet p;
   public Class _class;
+
+  // * SHAPES
+  public PShape skull;
+  public PShape tick;
 
   // * BUTTONS
   public PImage enter;
@@ -29,6 +34,10 @@ public class Assets {
   public void setup(App app) {
     this.p = app;
     this._class = this.getClass();
+
+    // * LOAD SHAPES
+    skull = p.loadShape("skull.svg");
+    tick = p.loadShape("tick.svg");
 
     // * LOAD BUTTONS
     enter = p.loadImage("btn/enter.png");

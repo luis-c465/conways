@@ -114,6 +114,7 @@ public class Conways extends Obj {
         if (cellsBuffer[x][y] == 1) { // The cell is alive: kill it if necessary
           if (neighbors < 2 || neighbors > 3) {
             cells[x][y] = 0; // Die unless it has 2 or 3 neighbors
+            m.numDead++;
           }
         } else { // The cell is dead: make it live if necessary
           if (neighbors == 3) {
@@ -122,6 +123,8 @@ public class Conways extends Obj {
         } // End of if
       } // End of y loop
     } // End of x loop
+
+    m.numTicks++;
   } // End of function
 
   public void KeyPressed() {

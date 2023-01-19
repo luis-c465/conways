@@ -25,6 +25,9 @@ public final class App extends PApplet {
   public int numRows = -1;
   public boolean paused = false;
 
+  public long numDead = 0;
+  public long numTicks = 0;
+
   // Should be calculated at runtime
 
   // * Util classes

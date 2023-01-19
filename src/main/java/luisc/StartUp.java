@@ -47,6 +47,7 @@ public class StartUp extends Transitionable {
         .setCaptionLabel("Num Rows")
         .setLabelVisible(true)
         .setColorCaptionLabel(name_label_c)
+        .setValue("100")
         .hide();
     numCols =
       m.cp5
@@ -60,6 +61,7 @@ public class StartUp extends Transitionable {
         .setCaptionLabel("Num Cols")
         .setLabelVisible(true)
         .setColorCaptionLabel(name_label_c)
+        .setValue("100")
         .hide();
 
     startGameBtn = new StartGameBtn(m);
