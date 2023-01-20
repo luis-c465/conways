@@ -24,7 +24,8 @@ public class Assets {
   public PImage space;
 
   // * MISCELLANEOUS
-  public PImage bg;
+  public PImage intro;
+  public PImage tutorial;
 
   // * FONTS
   public PFont nunito;
@@ -45,7 +46,8 @@ public class Assets {
     space.resize(200, 100);
 
     // * LOAD MISC
-    bg = p.loadImage("bg-blur.jpg");
+    intro = p.loadImage("intro.png");
+    tutorial = p.loadImage("tutorial.png");
 
     // * LOAD FONTS
     nunito = p.createFont("fonts/Nunito.ttf", 64);

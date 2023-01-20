@@ -5,6 +5,7 @@ package luisc;
  */
 public abstract class Clickable extends Obj {
 
+  // ! represents the center of the object
   protected int x = 500;
   protected int y = 500;
 

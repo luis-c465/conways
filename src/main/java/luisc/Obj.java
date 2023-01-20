@@ -27,18 +27,20 @@ public abstract class Obj {
     postSetup();
   }
 
-  protected void preSetup() {
-    // Should be used for super classes to setup variables
-  }
+  /**
+   * Should be used by super classes to setup variables
+   */
+  protected void preSetup() {}
 
-  protected void postSetup() {
-    // Should be used for super classes to override variables
-  }
+  /**
+   * Should be used by a super class to override variables after setup
+   */
+  protected void postSetup() {}
 
-  protected void _setup() {
-    // Does nothing
-    // Should be overridden by a super class and called in the setup method if needed
-  }
+  /**
+   * Should be overridden by a super class to setup stuff if needed
+   */
+  protected void _setup() {}
 
   /**
    * Draws and updates the object

@@ -19,6 +19,7 @@ public final class App extends PApplet {
   public static final int bg = 0xff1e293b;
 
   // * VARIABLES
+  public boolean doingIntro = true;
   public boolean doingStartUp = true;
   public boolean transitioning = false;
   public int numCols = -1;
@@ -40,6 +41,7 @@ public final class App extends PApplet {
   public Header header = new Header(this);
   public StartUp startUp = new StartUp(this);
   public Conways conways = new Conways(this);
+  public Intro intro = new Intro(this);
 
   // Transition classes
   public TransitionIn transIn = new TransitionIn(this);
@@ -60,6 +62,7 @@ public final class App extends PApplet {
 
     // SETUP CLASSES
     header.setup();
+    intro.setup();
     startUp.setup();
     conways.setup();
   }
@@ -68,6 +71,11 @@ public final class App extends PApplet {
   public void draw() {
     background(bg);
     fill(255);
+
+    intro.update();
+    if (doingIntro) {
+      return;
+    }
 
     startUp.update();
     // If the startup is not done do not continue on to the rest of the program
