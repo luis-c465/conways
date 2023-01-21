@@ -13,7 +13,6 @@ public class Header extends Obj {
   public static final int gap = 350;
 
   public PausedButton pausedBtn;
-  public HelpBtn helpBtn;
 
   public Slider intervalSlider;
 
@@ -32,10 +31,8 @@ public class Header extends Obj {
   @Override
   protected void _setup() {
     pausedBtn = new PausedButton(m);
-    helpBtn = new HelpBtn(m);
 
     pausedBtn.setup();
-    helpBtn.setup();
 
     intervalSlider =
       m.cp5
@@ -68,7 +65,6 @@ public class Header extends Obj {
   @Override
   protected void _update() {
     pausedBtn.update();
-    helpBtn.update();
 
     if (!m.startUp.done) {
       intervalSlider.hide();
@@ -122,10 +118,9 @@ public class Header extends Obj {
       play = p.loadShape("clock-play.svg");
 
       icon = pause;
-      x = App.w - 70 - w - 75;
-      y = safe + h;
-
       w = 200;
+      x = App.w - w - safe;
+      y = safe + h;
 
       txt = pau;
 
@@ -155,27 +150,6 @@ public class Header extends Obj {
     }
 
     public PausedButton(App a) {
-      super(a);
-    }
-  }
-
-  private class HelpBtn extends Btn {
-
-    @Override
-    protected void _setup() {
-      icon = p.loadShape("help.svg");
-      w = 75;
-      y = safe + h;
-
-      x = App.w - safe - w;
-
-      txt = "";
-      icon_space = 0;
-
-      cornerToCenter();
-    }
-
-    public HelpBtn(App a) {
       super(a);
     }
   }
